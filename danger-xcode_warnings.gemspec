@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = XcodeWarnings::VERSION
   spec.authors       = ['Scior']
   spec.email         = ['interval12@gmail.com']
-  spec.description   = %q{A short description of danger-xcode_warnings.}
-  spec.summary       = %q{A longer description of danger-xcode_warnings.}
+  spec.description   = "Show Xcode warnings with Danger"
+  spec.summary       = "Show Xcode warnings with Danger"
   spec.homepage      = 'https://github.com/Scior/danger-xcode_warnings'
   spec.license       = 'MIT'
 

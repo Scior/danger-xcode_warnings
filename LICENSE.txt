@@ -1,4 +1,4 @@
-Copyright (c) 2019 Scior <interval12@gmail.com>
+Copyright (c) 2019 Suita Fujino
 
 MIT License
 

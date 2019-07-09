@@ -1,6 +1,6 @@
 # danger-xcode_warnings
 
-A description of danger-xcode_warnings.
+A Danger plugin to show warnings from xcodebuild.
 
 ## Installation
 
@@ -8,8 +8,7 @@ A description of danger-xcode_warnings.
 
 ## Usage
 
-    Methods and attributes from this plugin are available in
-    your `Dangerfile` under the `xcode_warnings` namespace.
+TODO
 
 ## Development
 
