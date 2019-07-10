@@ -1,22 +1,20 @@
+require_relative "./log_parser"
+
 module Danger
-  # @example Ensure people are well warned about merging on Mondays
+  # Parse the xcodebuild log file and convert warnings.
+  # @example Parse and show xcodebuild warnings.
   #
-  #          my_plugin.warn_on_mondays
+  #          danger-xcode_warnings.analyze logfile
   #
   # @see  Scior/danger-xcode_warnings
   #
   class DangerXcodeWarnings < Plugin
-
-    # An attribute that you can read/write from your Dangerfile
+    # Parses the log from xcodebuild and show warnings and errors.
     #
-    # @return   [Array<String>]
-    attr_accessor :my_attribute
-
-    # A method that you can call from your Dangerfile
-    # @return   [Array<String>]
-    #
-    def warn_on_mondays
-      warn 'Trying to merge code on a Monday' if Date.today.wday == 1
+    def analyze(log_text)
+      LogParser.parse(log_text).each do |warning|
+        warn(warning[:message], file: warning[:path], line: warning[:line])
+      end
     end
   end
 end
