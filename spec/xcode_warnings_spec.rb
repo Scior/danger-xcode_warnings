@@ -34,6 +34,10 @@ module Danger
         expect(@dangerfile.status_report[:warnings]).to eq []
         expect(@dangerfile.status_report[:messages]).to eq []
       end
+
+      it "Couldn't find the file" do
+        @xcode_warnings.analyze_file "spec/fixtures/hoge"
+      end
     end
   end
 end

@@ -10,6 +10,7 @@ module Danger
   #
   class DangerXcodeWarnings < Plugin
     # Parses the log text from xcodebuild  and show warnings.
+    # @param [String] log_text Raw build log text.
     # @return [void]
     #
     def analyze(log_text)
@@ -21,11 +22,15 @@ module Danger
     end
 
     # Parses the log file from xcodebuild and show warnings.
+    # @param [String] file_path Path for the log file.
     # @return [void]
     #
-    def analyze_file(log_file)
-      text = IO.read(log_file)
-      analyze(text)
+    def analyze_file(file_path)
+      File.open(file_path) do |f|
+        analyze(f.read)
+      end
+    rescue Errno::ENOENT, Errno::EACCES => e
+      puts "Couldn't open the file: #{e}"
     end
   end
 end

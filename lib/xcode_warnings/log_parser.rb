@@ -6,7 +6,7 @@ class LogParser
   KEYWORD_WARNING = " warning: ".freeze
 
   # Parses the log text into hashes that represents warnings.
-  # @params [String] text The text to parse.
+  # @param [String] text The text to parse.
   # @return [Array] Array of hash that represents warnings
   #
   def parse(text)
@@ -17,6 +17,7 @@ class LogParser
   private
 
   def parse_warning_text(text)
+    puts text
     position, message = text.split(KEYWORD_WARNING)
     path, line, _column = position.split(":")
 
