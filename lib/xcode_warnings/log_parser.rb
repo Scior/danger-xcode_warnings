@@ -14,6 +14,8 @@ class LogParser
     warning_texts.map! { |s| parse_warning_text(s) }
   end
 
+  private
+
   def parse_warning_text(text)
     position, message = text.split(KEYWORD_WARNING)
     path, line, _column = position.split(":")

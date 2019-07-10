@@ -23,12 +23,16 @@ module Danger
           "instance method 'makeFlowLayout(with:)' took 104ms to type-check (limit: 100ms)",
           "variable 'hoge' was never used; consider replacing with '_' or removing it"
         ]
+        expect(@dangerfile.status_report[:messages]).to eq [
+          "Detected 3 build-time warnings."
+        ]
       end
 
       it "Doesn't warn with the clean build log" do
         @xcode_warnings.analyze_file "spec/fixtures/log_without_error"
 
         expect(@dangerfile.status_report[:warnings]).to eq []
+        expect(@dangerfile.status_report[:messages]).to eq []
       end
     end
   end

@@ -13,9 +13,11 @@ module Danger
     # @return [void]
     #
     def analyze(log_text)
-      LogParser.new.parse(log_text).each do |warning|
+      parsed = LogParser.new.parse(log_text)
+      parsed.each do |warning|
         warn(warning[:message], file: warning[:path], line: warning[:line])
       end
+      message "Detected #{parsed.count} build-time warnings." unless parsed.empty?
     end
 
     # Parses the log file from xcodebuild and show warnings.
