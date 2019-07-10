@@ -1,0 +1,17 @@
+User defaults from command line:
+    destination = platform=iOS Simulator,name=iPhone 8
+
+note: Using new build system
+
+** CLEAN SUCCEEDED **
+
+note: Using new build system
+note: Planning build
+note: Constructing build description
+CreateBuildDirectory /Users/fujino/Library/Developer/Xcode/DerivedData/ColorStock-dhqarewkfxlxgbejuyhqpnwbvuqx/Build/Products (in target: ColorStock)
+    cd /Users/fujino/iOS/ColorStock
+    builtin-create-build-directory /Users/fujino/Library/Developer/Xcode/DerivedData/ColorStock-dhqarewkfxlxgbejuyhqpnwbvuqx/Build/Products
+
+CreateBuildDirectory /Users/fujino/Library/Developer/Xcode/DerivedData/ColorStock-dhqarewkfxlxgbejuyhqpnwbvuqx/Build/Intermediates.noindex (in target: ColorStock)
+    cd /Users/fujino/iOS/ColorStock
+    builtin-create-build-directory /Users/fujino/Library/Developer/Xcode/DerivedData/ColorStock-dhqarewkfxlxgbejuyhqpnwbvuqx/Build/Intermediates.noindex

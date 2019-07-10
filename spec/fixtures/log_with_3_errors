@@ -1,0 +1,34 @@
+User defaults from command line:
+    destination = platform=iOS Simulator,name=iPhone 8
+
+note: Using new build system
+
+** CLEAN SUCCEEDED **
+
+note: Using new build system
+note: Planning build
+note: Constructing build description
+CreateBuildDirectory /Users/fujino/Library/Developer/Xcode/DerivedData/ColorStock-dhqarewkfxlxgbejuyhqpnwbvuqx/Build/Products (in target: ColorStock)
+    cd /Users/fujino/iOS/ColorStock
+    builtin-create-build-directory /Users/fujino/Library/Developer/Xcode/DerivedData/ColorStock-dhqarewkfxlxgbejuyhqpnwbvuqx/Build/Products
+
+CreateBuildDirectory /Users/fujino/Library/Developer/Xcode/DerivedData/ColorStock-dhqarewkfxlxgbejuyhqpnwbvuqx/Build/Intermediates.noindex (in target: ColorStock)
+    cd /Users/fujino/iOS/ColorStock
+    builtin-create-build-directory /Users/fujino/Library/Developer/Xcode/DerivedData/ColorStock-dhqarewkfxlxgbejuyhqpnwbvuqx/Build/Intermediates.noindex
+
+/Users/fujino/iOS/ColorStock/ColorStock/Utility/Extension/UIColor+.swift:13:17: warning: initializer 'init(r:g:b:)' took 177ms to type-check (limit: 100ms)
+    convenience init(r: UInt8, g: UInt8, b: UInt8) {
+                ^
+/Users/fujino/iOS/ColorStock/ColorStock/Presentation/ViewModel/Implementation/ColorSelectorViewModel.swift:75:10: warning: instance method 'makeFlowLayout(with:)' took 104ms to type-check (limit: 100ms)
+    func makeFlowLayout(with size: CGSize) -> UICollectionViewFlowLayout {
+         ^
+/Users/fujino/iOS/ColorStock/ColorStock/Utility/Extension/UIColor+.swift:13:17: warning: initializer 'init(r:g:b:)' took 177ms to type-check (limit: 100ms)
+    convenience init(r: UInt8, g: UInt8, b: UInt8) {
+                ^
+/Users/fujino/iOS/ColorStock/ColorStock/Presentation/ViewModel/Implementation/ColorSelectorViewModel.swift:75:10: warning: instance method 'makeFlowLayout(with:)' took 104ms to type-check (limit: 100ms)
+    func makeFlowLayout(with size: CGSize) -> UICollectionViewFlowLayout {
+         ^
+/Users/fujino/iOS/ColorStock/ColorStock/Data/Entity/Color.swift:22:13: warning: variable 'hoge' was never used; consider replacing with '_' or removing it
+        var hoge: String?
+            ^~~~
+            _
