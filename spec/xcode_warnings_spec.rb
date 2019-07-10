@@ -15,18 +15,18 @@ module Danger
         @xcode_warnings = @dangerfile.xcode_warnings
       end
 
-      it "Warns 2 lines filtered from the build log" do
-        test_data = "/foo/hoge.swift:24:10: warning: instance method 'hoge()' took 112ms to type-check (limit: 100ms)"
-
-        @xcode_warnings.analyze test_data
+      it "Warns 3 lines filtered from the build log" do
+        @xcode_warnings.analyze_file "spec/fixtures/log_with_3_errors"
 
         expect(@dangerfile.status_report[:warnings]).to eq [
-          "instance method 'hoge()' took 112ms to type-check (limit: 100ms)"
+          "initializer 'init(r:g:b:)' took 177ms to type-check (limit: 100ms)",
+          "instance method 'makeFlowLayout(with:)' took 104ms to type-check (limit: 100ms)",
+          "variable 'hoge' was never used; consider replacing with '_' or removing it"
         ]
       end
 
       it "Doesn't warn with the clean build log" do
-        @xcode_warnings.analyze ""
+        @xcode_warnings.analyze_file "spec/fixtures/log_without_error"
 
         expect(@dangerfile.status_report[:warnings]).to eq []
       end
