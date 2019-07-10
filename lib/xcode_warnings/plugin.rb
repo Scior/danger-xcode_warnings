@@ -27,6 +27,7 @@ module Danger
     #
     def analyze_file(file_path)
       File.open(file_path) do |f|
+        puts "Opened #{file_path}"
         analyze(f.read)
       end
     rescue Errno::ENOENT, Errno::EACCES => e
