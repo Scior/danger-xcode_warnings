@@ -22,7 +22,7 @@ class LogParser
     path, line, _column = position.split(":")
 
     {
-      path: path,
+      path: path.gsub(Dir.pwd + "/", ""),
       line: line,
       message: message.chomp
     }
