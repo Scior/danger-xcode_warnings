@@ -11,6 +11,7 @@ module Danger
   class DangerXcodeWarnings < Plugin
     # Parses the log text from xcodebuild  and show warnings.
     # @param [String] log_text Raw build log text.
+    # @param [Boolean] sticky Whether use sticky flag or not.
     # @return [void]
     #
     def analyze(log_text, sticky = true)
@@ -23,6 +24,7 @@ module Danger
 
     # Parses the log file from xcodebuild and show warnings.
     # @param [String] file_path Path for the log file.
+    # @param [Boolean] sticky Whether use sticky flag or not.
     # @return [void]
     #
     def analyze_file(file_path, sticky = true)
