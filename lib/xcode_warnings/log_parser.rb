@@ -11,7 +11,7 @@ class LogParser
   #
   def parse(text)
     warning_texts = text.each_line.select { |s| s.include?(KEYWORD_WARNING) }.uniq
-    warning_texts.map! { |s| parse_warning_text(s) }
+    warning_texts.map! { |s| parse_warning_text(s) }.compact
   end
 
   private
@@ -20,6 +20,8 @@ class LogParser
     puts text
     position, message = text.split(KEYWORD_WARNING)
     path, line, _column = position.split(":")
+
+    return nil if path.nil?
 
     {
       path: path.gsub(Dir.pwd + "/", ""),
