@@ -20,9 +20,9 @@ module Danger
 
         expect(@dangerfile.status_report[:warnings]).to eq [
           "linking against a dylib which is not safe for use in application extensions: /hoge",
-          "initializer 'init(r:g:b:)' took 177ms to type-check (limit: 100ms)",
-          "instance method 'makeFlowLayout(with:)' took 104ms to type-check (limit: 100ms)",
-          "variable 'hoge' was never used; consider replacing with '_' or removing it"
+          "**/Users/fujino/iOS/ColorStock/ColorStock/Utility/Extension/UIColor+.swift#L13** initializer 'init(r:g:b:)' took 177ms to type-check (limit: 100ms)",
+          "**/Users/fujino/iOS/ColorStock/ColorStock/Presentation/ViewModel/Implementation/ColorSelectorViewModel.swift#L75** instance method 'makeFlowLayout(with:)' took 104ms to type-check (limit: 100ms)",
+          "**/Users/fujino/iOS/ColorStock/ColorStock/Data/Entity/Color.swift#L22** variable 'hoge' was never used; consider replacing with '_' or removing it"
         ]
         expect(@dangerfile.status_report[:messages]).to eq [
           "Detected 4 build-time warnings."
