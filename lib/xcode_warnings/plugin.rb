@@ -5,7 +5,7 @@ module Danger
   # Parse the xcodebuild log file and convert warnings.
   # @example Parse and show xcodebuild warnings.
   #
-  #          danger-xcode_warnings.analyze logfile
+  #          danger-xcode_warnings.analyze_file 'logfile'
   #
   # @see  Scior/danger-xcode_warnings
   #
@@ -18,6 +18,10 @@ module Danger
     # @return [void]
     attr_accessor :show_linker_warnings
 
+    # Whether show build timing summary or not.
+    # @return [void]
+    attr_accessor :show_build_timing_summary
+
     # rubocop:disable Lint/DuplicateMethods
     def show_build_warnings
       @show_build_warnings.nil? ? true : @show_build_warnings
@@ -25,6 +29,10 @@ module Danger
 
     def show_linker_warnings
       @show_linker_warnings || false
+    end
+
+    def show_build_timing_summary
+      @show_build_timing_summary || false
     end
     # rubocop:enable Lint/DuplicateMethods
 
@@ -39,8 +47,9 @@ module Danger
       parser = LogParser.new
       parser.show_build_warnings = show_build_warnings
       parser.show_linker_warnings = show_linker_warnings
+      parser.show_build_timing_summary = show_build_timing_summary
 
-      parsed = parser.parse(log_text)
+      parsed = parser.parse_warnings(log_text)
       parsed.each do |warning|
         if inline
           warn(warning[:message], sticky: sticky, file: warning[:file], line: warning[:line])
@@ -49,6 +58,7 @@ module Danger
         end
       end
       message "Detected #{parsed.count} build-time warnings." unless parsed.empty?
+      message parser.parse_build_timing_summary(log_text)
     end
 
     # Parses the log file from xcodebuild and show warnings.
