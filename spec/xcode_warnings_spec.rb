@@ -53,6 +53,19 @@ module Danger
         expect(@dangerfile.status_report[:messages]).to eq []
       end
 
+      it "Show build timing summary" do
+        @xcode_warnings.show_build_timing_summary = true
+        @xcode_warnings.analyze_file "spec/fixtures/log_with_build_timing_summary"
+
+        expect(@dangerfile.status_report[:warnings]).to eq []
+        expect(@dangerfile.status_report[:messages]).to eq [
+          "CompileStoryboard (2 tasks) | 10.000 seconds\n" \
+          "CompileSwiftSources (1 task) | 2.000 seconds\n" \
+          "Ld (1 task) | 0.000 seconds\n" \
+          "LinkStoryboards (1 task) | 0.000 seconds"
+        ]
+      end
+
       it "Doesn't warn with the clean build log" do
         @xcode_warnings.analyze_file "spec/fixtures/log_without_error"
 
