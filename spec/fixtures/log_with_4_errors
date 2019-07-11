@@ -16,6 +16,8 @@ CreateBuildDirectory /Users/fujino/Library/Developer/Xcode/DerivedData/ColorStoc
     cd /Users/fujino/iOS/ColorStock
     builtin-create-build-directory /Users/fujino/Library/Developer/Xcode/DerivedData/ColorStock-dhqarewkfxlxgbejuyhqpnwbvuqx/Build/Intermediates.noindex
 
+ld: warning: linking against a dylib which is not safe for use in application extensions: /hoge
+
 /Users/fujino/iOS/ColorStock/ColorStock/Utility/Extension/UIColor+.swift:13:17: warning: initializer 'init(r:g:b:)' took 177ms to type-check (limit: 100ms)
     convenience init(r: UInt8, g: UInt8, b: UInt8) {
                 ^

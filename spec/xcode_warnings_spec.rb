@@ -15,16 +15,17 @@ module Danger
         @xcode_warnings = @dangerfile.xcode_warnings
       end
 
-      it "Warns 3 lines filtered from the build log" do
-        @xcode_warnings.analyze_file "spec/fixtures/log_with_3_errors"
+      it "Warns 4 lines filtered from the build log" do
+        @xcode_warnings.analyze_file "spec/fixtures/log_with_4_errors"
 
         expect(@dangerfile.status_report[:warnings]).to eq [
+          "linking against a dylib which is not safe for use in application extensions: /hoge",
           "initializer 'init(r:g:b:)' took 177ms to type-check (limit: 100ms)",
           "instance method 'makeFlowLayout(with:)' took 104ms to type-check (limit: 100ms)",
           "variable 'hoge' was never used; consider replacing with '_' or removing it"
         ]
         expect(@dangerfile.status_report[:messages]).to eq [
-          "Detected 3 build-time warnings."
+          "Detected 4 build-time warnings."
         ]
       end
 

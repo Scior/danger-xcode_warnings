@@ -9,7 +9,8 @@ module Danger
   # @see  Scior/danger-xcode_warnings
   #
   class DangerXcodeWarnings < Plugin
-    # Parses the log text from xcodebuild  and show warnings.
+    # Parses the log text from xcodebuild and show warnings.
+    #
     # @param [String] log_text Raw build log text.
     # @param [Boolean] sticky Whether use sticky flag or not.
     # @return [void]
@@ -17,12 +18,13 @@ module Danger
     def analyze(log_text, sticky = true)
       parsed = LogParser.new.parse(log_text)
       parsed.each do |warning|
-        warn(warning[:message], sticky: sticky, file: warning[:path], line: warning[:line])
+        warn(warning[:message], sticky: sticky, file: warning[:file], line: warning[:line])
       end
       message "Detected #{parsed.count} build-time warnings." unless parsed.empty?
     end
 
     # Parses the log file from xcodebuild and show warnings.
+    #
     # @param [String] file_path Path for the log file.
     # @param [Boolean] sticky Whether use sticky flag or not.
     # @return [void]
