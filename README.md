@@ -1,22 +1,23 @@
 # danger-xcode_warnings
 
-[![version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/Scior/Linna)
+[![version](https://img.shields.io/badge/version-0.1.2-blue.svg)](https://github.com/Scior/danger-xcode_warnings)
 [![Build Status](https://travis-ci.org/Scior/danger-xcode_warnings.svg?branch=master)](https://travis-ci.org/Scior/danger-xcode_warnings)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A Danger plugin to show warnings from xcodebuild.
 
+![Sample](doc/sample.png)
+
 ## Installation
 
 ```sh
-gem install specific_install
-gem specific_install git@github.com:Scior/danger-xcode_warnings.git
+gem install danger-xcode_warnings
 ```
 
 Or using Bundler,
 
 ```ruby
-gem 'danger-xcode_warnings', :git => 'https://github.com/Scior/danger-xcode_warnings.git'
+gem 'danger-xcode_warnings'
 ```
 
 ## Usage
