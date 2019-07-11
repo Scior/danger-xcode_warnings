@@ -38,7 +38,7 @@ class LogParser
   def parse_build_timing_summary(text)
     return nil unless @show_build_timing_summary
 
-    lines = text.lines(chomp: true)
+    lines = text.lines.map!(&:chomp)
     index = lines.index("Build Timing Summary")
     return nil if index.nil?
 
