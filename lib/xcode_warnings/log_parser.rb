@@ -8,6 +8,14 @@ class LogParser
   # Struct represents warnings.
   Warning = Struct.new(:file, :line, :message)
 
+  # Whether show build warnings or not.
+  # @return [void]
+  attr_accessor :show_build_warnings
+
+  # Whether show linker warnings or not.
+  # @return [void]
+  attr_accessor :show_linker_warnings
+
   # Parses the log text into hashes that represents warnings.
   #
   # @param [String] text The text to parse.
@@ -25,8 +33,13 @@ class LogParser
     position, message = text.split(KEYWORD_WARNING)
     if position.start_with?("ld")
       # Linker warning
+      return nil unless @show_linker_warnings
+
       return Warning.new(nil, nil, message.chomp)
     end
+
+    # Build warnings
+    return nil unless @show_build_warnings
 
     path, line, _column = position.split(":")
     return nil if path.nil?

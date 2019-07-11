@@ -15,18 +15,42 @@ module Danger
         @xcode_warnings = @dangerfile.xcode_warnings
       end
 
-      it "Warns 4 lines filtered from the build log" do
+      it "Warns 3 lines with default settings" do
+        @xcode_warnings.analyze_file "spec/fixtures/log_with_4_errors"
+
+        expect(@dangerfile.status_report[:warnings]).to eq [
+          "**/Users/fujino/iOS/ColorStock/ColorStock/Utility/Extension/UIColor+.swift#L13** initializer 'init(r:g:b:)' took 177ms to type-check (limit: 100ms)",
+          "**/Users/fujino/iOS/ColorStock/ColorStock/Presentation/ViewModel/Implementation/ColorSelectorViewModel.swift#L75** instance method 'makeFlowLayout(with:)' took 104ms to type-check (limit: 100ms)",
+          "**/Users/fujino/iOS/ColorStock/ColorStock/Data/Entity/Color.swift#L22** variable 'hoge' was never used; consider replacing with '_' or removing it"
+        ]
+        expect(@dangerfile.status_report[:messages]).to eq [
+          "Detected 3 build-time warnings."
+        ]
+      end
+
+      it "Warns 4 lines with all settings enabled" do
+        @xcode_warnings.show_build_warnings = true
+        @xcode_warnings.show_linker_warnings = true
         @xcode_warnings.analyze_file "spec/fixtures/log_with_4_errors"
 
         expect(@dangerfile.status_report[:warnings]).to eq [
           "linking against a dylib which is not safe for use in application extensions: /hoge",
-          "initializer 'init(r:g:b:)' took 177ms to type-check (limit: 100ms)",
-          "instance method 'makeFlowLayout(with:)' took 104ms to type-check (limit: 100ms)",
-          "variable 'hoge' was never used; consider replacing with '_' or removing it"
+          "**/Users/fujino/iOS/ColorStock/ColorStock/Utility/Extension/UIColor+.swift#L13** initializer 'init(r:g:b:)' took 177ms to type-check (limit: 100ms)",
+          "**/Users/fujino/iOS/ColorStock/ColorStock/Presentation/ViewModel/Implementation/ColorSelectorViewModel.swift#L75** instance method 'makeFlowLayout(with:)' took 104ms to type-check (limit: 100ms)",
+          "**/Users/fujino/iOS/ColorStock/ColorStock/Data/Entity/Color.swift#L22** variable 'hoge' was never used; consider replacing with '_' or removing it"
         ]
         expect(@dangerfile.status_report[:messages]).to eq [
           "Detected 4 build-time warnings."
         ]
+      end
+
+      it "Doesn't warn lines with all settings disabled" do
+        @xcode_warnings.show_build_warnings = false
+        @xcode_warnings.show_linker_warnings = false
+        @xcode_warnings.analyze_file "spec/fixtures/log_with_4_errors"
+
+        expect(@dangerfile.status_report[:warnings]).to eq []
+        expect(@dangerfile.status_report[:messages]).to eq []
       end
 
       it "Doesn't warn with the clean build log" do
