@@ -10,6 +10,24 @@ module Danger
   # @see  Scior/danger-xcode_warnings
   #
   class DangerXcodeWarnings < Plugin
+    # Whether show build warnings or not.
+    # @return [void]
+    attr_accessor :show_build_warnings
+
+    # Whether show linker warnings or not.
+    # @return [void]
+    attr_accessor :show_linker_warnings
+
+    # rubocop:disable Lint/DuplicateMethods
+    def show_build_warnings
+      @show_build_warnings.nil? ? true : @show_build_warnings
+    end
+
+    def show_linker_warnings
+      @show_linker_warnings || false
+    end
+    # rubocop:enable Lint/DuplicateMethods
+
     # Parses the log text from xcodebuild and show warnings.
     #
     # @param [String] log_text Raw build log text.
@@ -18,7 +36,11 @@ module Danger
     # @return [void]
     #
     def analyze(log_text, inline: false, sticky: true)
-      parsed = LogParser.new.parse(log_text)
+      parser = LogParser.new
+      parser.show_build_warnings = show_build_warnings
+      parser.show_linker_warnings = show_linker_warnings
+
+      parsed = parser.parse(log_text)
       parsed.each do |warning|
         if inline
           warn(warning[:message], sticky: sticky, file: warning[:file], line: warning[:line])
