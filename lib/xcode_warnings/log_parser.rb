@@ -5,10 +5,13 @@ class LogParser
   # The keyword for detecing warnings.
   KEYWORD_WARNING = " warning: ".freeze
 
+  # Struct represents warnings.
+  Warning = Struct.new(:file, :line, :message)
+
   # Parses the log text into hashes that represents warnings.
   #
   # @param [String] text The text to parse.
-  # @return [Array] Array of hash that represents warnings
+  # @return [Array] Array of `Warning`.
   #
   def parse(text)
     warning_texts = text.each_line.select { |s| s.include?(KEYWORD_WARNING) }.uniq
@@ -22,20 +25,12 @@ class LogParser
     position, message = text.split(KEYWORD_WARNING)
     if position.start_with?("ld")
       # Linker warning
-      return {
-        path: nil,
-        line: nil,
-        message: message.chomp
-      }
+      return Warning.new(nil, nil, message.chomp)
     end
 
     path, line, _column = position.split(":")
     return nil if path.nil?
 
-    {
-      path: path.gsub(Dir.pwd + "/", ""),
-      line: line,
-      message: message.chomp
-    }
+    Warning.new(path.gsub("#{Dir.pwd}/", ""), line, message.chomp)
   end
 end
