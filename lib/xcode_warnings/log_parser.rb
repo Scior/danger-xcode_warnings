@@ -39,10 +39,17 @@ class LogParser
     return nil unless @show_build_timing_summary
 
     lines = text.lines.map!(&:chomp)
-    index = lines.index("Build Timing Summary")
+    index = lines.reverse.index("Build Timing Summary")
     return nil if index.nil?
 
-    lines[index + 1..-1].select { |s| s =~ /.+/ }.join("\n")
+    build_times = lines[-index..-1]
+      .select { |s| s =~ /.+/ }
+      .reject { |s| s.include?("*") }
+    total_time = build_times
+      .map { |s| s.split(" | ")[1].split[0].to_f }
+      .sum
+
+    "#{build_times.join("\n")}\nTotal Build Time: **#{total_time}s**"
   end
 
   private

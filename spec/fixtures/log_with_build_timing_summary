@@ -27,3 +27,6 @@ CompileSwiftSources (1 task) | 2.000 seconds
 Ld (1 task) | 0.000 seconds
 
 LinkStoryboards (1 task) | 0.000 seconds
+
+** BUILD SUCCEEDED **
+

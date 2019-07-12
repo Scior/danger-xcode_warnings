@@ -62,7 +62,8 @@ module Danger
           "CompileStoryboard (2 tasks) | 10.000 seconds\n" \
           "CompileSwiftSources (1 task) | 2.000 seconds\n" \
           "Ld (1 task) | 0.000 seconds\n" \
-          "LinkStoryboards (1 task) | 0.000 seconds"
+          "LinkStoryboards (1 task) | 0.000 seconds\n" \
+          "Total Build Time: **12.0s**"
         ]
       end
 
