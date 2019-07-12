@@ -28,7 +28,7 @@ Simply collect the log from `xcodebuild`,
 xcodebuild clean build >> buildlog.log
 ```
 
-and analyze on your `Dangerfile`.
+then analyze on your `Dangerfile`.
 
 ```ruby
 xcode_warnings.analyze_file 'buildlog.log'
