@@ -47,7 +47,7 @@ class LogParser
       .reject { |s| s.include?("*") }
     total_time = build_times
       .map { |s| s.split(" | ")[1].split[0].to_f }
-      .sum
+      .inject(:+)
 
     "#{build_times.join("\n")}\nTotal Build Time: **#{total_time}s**"
   end
