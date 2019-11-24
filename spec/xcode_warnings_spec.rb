@@ -1,5 +1,6 @@
 require File.expand_path("spec_helper", __dir__)
 
+# rubocop:disable Metrics/ModuleLength
 module Danger
   describe Danger::DangerXcodeWarnings do
     it "should be a plugin" do
@@ -147,3 +148,4 @@ module Danger
     end
   end
 end
+# rubocop:enable Metrics/ModuleLength
