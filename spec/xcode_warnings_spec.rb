@@ -1,5 +1,6 @@
 require File.expand_path("spec_helper", __dir__)
 
+# rubocop:disable Metrics/ModuleLength
 module Danger
   describe Danger::DangerXcodeWarnings do
     it "should be a plugin" do
@@ -106,6 +107,45 @@ module Danger
           @xcode_warnings.analyze_file "spec/fixtures/hoge"
         end
       end
+
+      context "use xcpretty log with default settings" do
+        before do
+          @xcode_warnings.use_xcpretty = true
+          @xcode_warnings.analyze_file "spec/fixtures/log_xcpretty"
+        end
+
+        it "warn 2 lines" do
+          expect(@dangerfile.status_report[:warnings]).to eq [
+            "**/Users/fujino/iOS/ColorStock/ColorStock/Utility/Extension/UIColor+.swift#L13** initializer 'init(r:g:b:)' took 177ms to type-check (limit: 100ms)"
+          ]
+        end
+        it "put a single message" do
+          expect(@dangerfile.status_report[:messages]).to eq [
+            "Detected 1 build-time warnings."
+          ]
+        end
+      end
+
+      context "use xcpretty log and enable linker warnings" do
+        before do
+          @xcode_warnings.use_xcpretty = true
+          @xcode_warnings.show_linker_warnings = true
+          @xcode_warnings.analyze_file "spec/fixtures/log_xcpretty"
+        end
+
+        it "warn 2 lines" do
+          expect(@dangerfile.status_report[:warnings]).to eq [
+            "**/Users/fujino/iOS/ColorStock/ColorStock/Utility/Extension/UIColor+.swift#L13** initializer 'init(r:g:b:)' took 177ms to type-check (limit: 100ms)",
+            "linking against a dylib which is not safe for use in application extensions: /hoge"
+          ]
+        end
+        it "put 2 messages" do
+          expect(@dangerfile.status_report[:messages]).to eq [
+            "Detected 2 build-time warnings."
+          ]
+        end
+      end
     end
   end
 end
+# rubocop:enable Metrics/ModuleLength

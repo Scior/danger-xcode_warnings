@@ -1,4 +1,5 @@
 require_relative "./log_parser"
+require_relative "./log_parser_xcpretty"
 require_relative "./message_formatter"
 
 module Danger
@@ -14,15 +15,20 @@ module Danger
     # @return [void]
     attr_accessor :show_build_warnings
 
-    # Whether show linker warnings or not.
+    # Whether show linker warnings or not. The default value is `false`.
     # @return [void]
     attr_accessor :show_linker_warnings
 
-    # Whether show build timing summary or not.
+    # Whether show build timing summary or not. The default value is `false`.
     # @return [void]
     attr_accessor :show_build_timing_summary
 
+    # Whether use xcpretty for formatting logs. The default value is `false`.
+    # @return [void]
+    attr_accessor :use_xcpretty
+
     # rubocop:disable Lint/DuplicateMethods
+
     def show_build_warnings
       @show_build_warnings.nil? ? true : @show_build_warnings
     end
@@ -34,6 +40,10 @@ module Danger
     def show_build_timing_summary
       @show_build_timing_summary || false
     end
+
+    def use_xcpretty
+      @use_xcpretty || false
+    end
     # rubocop:enable Lint/DuplicateMethods
 
     # Parses the log text from xcodebuild and show warnings.
@@ -44,10 +54,14 @@ module Danger
     # @return [void]
     #
     def analyze(log_text, inline: false, sticky: true)
-      parser = LogParser.new
+      if use_xcpretty
+        parser = LogParserXCPretty.new
+      else
+        parser = LogParser.new
+        parser.show_build_timing_summary = show_build_timing_summary
+      end
       parser.show_build_warnings = show_build_warnings
       parser.show_linker_warnings = show_linker_warnings
-      parser.show_build_timing_summary = show_build_timing_summary
 
       parsed = parser.parse_warnings(log_text)
       parsed.each do |warning|
