@@ -1,10 +1,11 @@
 # danger-xcode_warnings
 
-[![version](https://img.shields.io/badge/version-0.2.0-blue.svg)](https://github.com/Scior/danger-xcode_warnings)
+[![Gem Version](https://badge.fury.io/rb/danger-xcode_warnings.svg)](https://badge.fury.io/rb/danger-xcode_warnings)
 [![Build Status](https://travis-ci.org/Scior/danger-xcode_warnings.svg?branch=master)](https://travis-ci.org/Scior/danger-xcode_warnings)
+[![version](https://img.shields.io/badge/Xcode-11-blue.svg)](https://developer.apple.com/xcode/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A Danger plugin to format and show warnings from xcodebuild.
+A Danger plugin to format and show warnings from `xcodebuild`.
 
 ![Sample](doc/sample.png)
 
