@@ -1,9 +1,9 @@
 #
-# Parser class for the xcodebuild log.
+# Parser class for the xcpretty log.
 #
-class LogParser
+class LogParserXCPretty
   # The keyword for detecing warnings.
-  KEYWORD_WARNING = " warning: ".freeze
+  KEYWORD_WARNING = "\u26A0".freeze
 
   # Struct represents warnings.
   Warning = Struct.new(:file, :line, :message)
@@ -15,10 +15,6 @@ class LogParser
   # Whether show linker warnings or not.
   # @return [void]
   attr_accessor :show_linker_warnings
-
-  # Whether show build timing summary or not.
-  # @return [void]
-  attr_accessor :show_build_timing_summary
 
   # Parses the log text into an array of Warnings.
   #
@@ -56,7 +52,7 @@ class LogParser
 
   def parse_warning_text(text)
     puts text
-    position, message = text.split(KEYWORD_WARNING)
+    position, message = text.split(" ", 3).slice(1, 2)
     if position.start_with?("ld")
       # Linker warning
       return nil unless @show_linker_warnings

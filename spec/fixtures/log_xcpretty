@@ -1,0 +1,6 @@
+
+▸ Compiling UIColor+.swift
+⚠️  /Users/fujino/iOS/ColorStock/ColorStock/Utility/Extension/UIColor+.swift:13:17: initializer 'init(r:g:b:)' took 177ms to type-check (limit: 100ms)
+▸ Linking RxDataSources
+▸ Linking NotificationService
+⚠️  ld: linking against a dylib which is not safe for use in application extensions: /hoge
