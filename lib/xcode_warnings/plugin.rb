@@ -15,19 +15,20 @@ module Danger
     # @return [void]
     attr_accessor :show_build_warnings
 
-    # Whether show linker warnings or not.
+    # Whether show linker warnings or not. The default value is `false`.
     # @return [void]
     attr_accessor :show_linker_warnings
 
-    # Whether show build timing summary or not.
+    # Whether show build timing summary or not. The default value is `false`.
     # @return [void]
     attr_accessor :show_build_timing_summary
 
-    # Whether use xcpretty for formatting logs.
+    # Whether use xcpretty for formatting logs. The default value is `false`.
     # @return [void]
     attr_accessor :use_xcpretty
 
     # rubocop:disable Lint/DuplicateMethods
+
     def show_build_warnings
       @show_build_warnings.nil? ? true : @show_build_warnings
     end
