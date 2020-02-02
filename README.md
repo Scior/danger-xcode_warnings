@@ -1,7 +1,7 @@
 # danger-xcode_warnings
 
 [![Gem Version](https://badge.fury.io/rb/danger-xcode_warnings.svg)](https://badge.fury.io/rb/danger-xcode_warnings)
-[![Build Status](https://travis-ci.org/Scior/danger-xcode_warnings.svg?branch=master)](https://travis-ci.org/Scior/danger-xcode_warnings)
+![Build Status](https://github.com/Scior/danger-xcode_warnings/workflows/Ruby%20Gem/badge.svg)
 [![version](https://img.shields.io/badge/Xcode-11-blue.svg)](https://developer.apple.com/xcode/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
