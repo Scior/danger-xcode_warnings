@@ -53,7 +53,7 @@ module Danger
     # @param [Boolean] sticky Whether use sticky flag or not.
     # @return [void]
     #
-    def analyze(log_text, inline: false, sticky: true)
+    def analyze(log_text, inline: true, sticky: true)
       if use_xcpretty
         parser = LogParserXCPretty.new
       else
