@@ -17,6 +17,12 @@ jobs:
       with:
         version: 2.6.x
 
+    - name: Build and test with Rake
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        bundle exec rake
+
     - name: Publish to RubyGems
       run: |
         mkdir -p $HOME/.gem
